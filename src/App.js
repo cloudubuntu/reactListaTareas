@@ -1,5 +1,11 @@
+//BORRAR TODO LO COMENTADO
+
 //import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Subtitulo from "./components/Subtitulo";
+import Titulo from "./components/Titulo";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
 
 function App() {
   return (
@@ -19,7 +25,17 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div></div>
+    //props objetos inmutable, unidireccional de padres a hijos. forma de agregar como dice "comision"
+    <div>
+      {" "}
+      <Titulo></Titulo>
+      
+      <Subtitulo comision='c19i' estado={true}/>
+      
+      <hr/>
+      <Button variant="primary">Primary</Button>
+    </div>
+
   );
 }
 
