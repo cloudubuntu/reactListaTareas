@@ -5,8 +5,7 @@ import ItemTarea from "./ItemTarea";
 const ListaTareas = () => {
   return (
     <div>
-      <ListGroup>
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
+      <ListGroup>        
         <ItemTarea></ItemTarea>
       </ListGroup>
     </div>
