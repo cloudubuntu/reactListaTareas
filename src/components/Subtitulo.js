@@ -2,10 +2,13 @@
 
 import React from 'react';
 
-const Subtitulo = () => {
+const Subtitulo = (props) => {
+    //aqui se agrega la logica deseada
     return (
+
+        //aqui va todo el maquetado y algo de logica
         <div>
-            <h3 className='text-center'>Tareas de la comision</h3>
+            <h3 className='text-center'>Tareas de la comision {props.comision}</h3>
         </div>
     );
 };
