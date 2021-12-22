@@ -22,18 +22,25 @@ const FormTareas = () => {
       //limpiar el imput
       setTarea('');
     }
+    const borrarTarea=(nombreTarea)=>{
+      //filtramos el state quitando el elemento que queremos borrar
+      let arrayMod=listaTareas.filter((valor)=>valor !== nombreTarea);
+      //modificamos el state
+      setListaTareas(arrayMod);
+    }
   return (
     <div className="container">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex">
           {/* agrego el evento con onChange, e.target=obtengo el input del html */}
-          <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e)=>{console.log(setTarea(e.target.value.trim()))}} /*aqui enlazo el value con el state tarea*/value={tarea}/>
+          <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e)=>{console.log(setTarea(e.target.value.trimStart()))}} /*aqui enlazo el value con el state tarea*/value={tarea}/>
           <Button variant="dark" type="submit" className="ms-2">
           Agregar
         </Button>
         </Form.Group>        
       </Form>
-      <ListaTareas></ListaTareas>
+      {/* envio el array listaTareas mediante un props (arrayTareas) al componente ListaTareas */}
+      <ListaTareas arrayTareas={listaTareas} borrarTarea={borrarTarea}></ListaTareas>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 
 
-const ItemTarea = () => {
+const ItemTarea = (props) => {
   return (
     <div>
-      <ListGroup.Item>Cras justo odio</ListGroup.Item>      
+      <ListGroup.Item className="d-flex justify-content-between">{props.itemTarea} <Button type="button" variant="dark" onClick={()=>{props.borrarTarea(props.itemTarea)}}>Borrar</Button></ListGroup.Item>      
     </div>
   );
 };
