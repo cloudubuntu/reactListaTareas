@@ -14,12 +14,20 @@ const FormTareas = () => {
     //sintaxis especifica, constante, corchetes, primer valor nombre, segundo valor funcion para modificar el state
     const [listaTareas, setListaTareas]=useState([]);
     const [tarea, setTarea]=useState('');
-
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+      //guardar el contenido stateTarea dentro de listaTareas[]
+      //operador spread = ... desarmar un array, copia su contenido y agrega el que le indiquemos
+      setListaTareas([...listaTareas, tarea])
+      //limpiar el imput
+      setTarea('');
+    }
   return (
     <div className="container">
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex">
-          <Form.Control type="text" placeholder="Ingrese una tarea" />
+          {/* agrego el evento con onChange, e.target=obtengo el input del html */}
+          <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e)=>{console.log(setTarea(e.target.value.trim()))}} /*aqui enlazo el value con el state tarea*/value={tarea}/>
           <Button variant="dark" type="submit" className="ms-2">
           Agregar
         </Button>
