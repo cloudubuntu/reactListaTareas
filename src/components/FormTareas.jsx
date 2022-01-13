@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 // import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstrap/Button';
 
@@ -12,7 +12,7 @@ import ListaTareas from "./ListaTareas";
 const FormTareas = () => {
     //uso los useState
     //sintaxis especifica, constante, corchetes, primer valor nombre, segundo valor funcion para modificar el state
-    const [listaTareas, setListaTareas]=useState([]);
+    const [listaTareas, setListaTareas]=useState(JSON.parse(localStorage.getItem('listaTareas'))||[]);
     const [tarea, setTarea]=useState('');
     const handleSubmit=(e)=>{
       e.preventDefault();
@@ -28,12 +28,18 @@ const FormTareas = () => {
       //modificamos el state
       setListaTareas(arrayMod);
     }
+    //ciclo de vida de un componente
+    useEffect(()=>{
+      //esta sintaxis funciona en montaje y actualizacion, para que sea solo en montaje agregar coma luego de la llave de cierre y agregar [], para mirar una actulizacion de un state agregar dentro de los [NOMBRE DEL STATE]
+      console.log('esto es una prueba');
+      localStorage.setItem('listaTareas', JSON.stringify(listaTareas));
+    },[listaTareas])
   return (
     <div className="container">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex">
           {/* agrego el evento con onChange, e.target=obtengo el input del html */}
-          <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e)=>{console.log(setTarea(e.target.value.trimStart()))}} /*aqui enlazo el value con el state tarea*/value={tarea}/>
+          <Form.Control type="text" placeholder="Ingrese una tarea" onChange={(e)=>{setTarea(e.target.value.trimStart())}} /*aqui enlazo el value con el state tarea*/value={tarea}/>
           <Button variant="dark" type="submit" className="ms-2">
           Agregar
         </Button>
